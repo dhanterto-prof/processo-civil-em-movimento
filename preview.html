@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Processo Civil em Movimento · Lara Monteiro x TechMais · Simulação TJPI/Afya</title>
+<style>
+:root{
+  --afya:#c9007a;
+  --afya-2:#9e005d;
+  --afya-3:#fce4f0;
+  --afya-4:#fff4fa;
+  --ink:#171717;
+  --ink-2:#444;
+  --muted:#777;
+  --line:#d8d8d8;
+  --soft:#f4f4f4;
+  --paper:#fff;
+  --bg:#f2f2f2;
+  --pje:#1d4e7a;
+  --pje-light:#eaf1f7;
+  --ok:#236b4f;
+  --warn:#955f00;
+  --shadow:0 10px 35px rgba(0,0,0,.08);
+  --serif:Georgia, 'Times New Roman', serif;
+  --sans:Arial, Helvetica, sans-serif;
+  --mono:'Courier New', monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.52;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+button{font-family:var(--sans)}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);box-shadow:0 1px 8px rgba(0,0,0,.04);backdrop-filter:blur(8px)}
+.topbar-inner{max-width:1220px;margin:0 auto;padding:11px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.01em;color:#222}.brand-dot{width:12px;height:12px;border-radius:50%;background:var(--afya);display:inline-block}.brand small{font-weight:400;color:var(--muted);padding-left:12px;border-left:1px solid #ddd;margin-left:2px}.actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}.btn{border:1px solid #cfcfcf;background:#fff;color:#333;border-radius:999px;padding:8px 13px;font-size:12.5px;cursor:pointer;transition:.15s}.btn:hover{border-color:var(--afya);color:var(--afya)}.btn.primary{background:var(--afya);color:#fff;border-color:var(--afya)}.btn.primary:hover{color:#fff;background:var(--afya-2)}
+.hero{background:linear-gradient(135deg,#fff 0%,#fff 58%,var(--afya-4) 100%);border-bottom:1px solid var(--line)}.hero-inner{max-width:1220px;margin:0 auto;padding:52px 24px 36px;display:grid;grid-template-columns:1.35fr .9fr;gap:34px;align-items:end}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:var(--afya);font-weight:900;margin-bottom:14px}.hero h1{font-family:var(--serif);font-size:clamp(40px,6.2vw,76px);font-weight:400;letter-spacing:-.055em;line-height:.96;margin:0 0 20px}.hero h1 em{color:var(--afya);font-style:italic}.lede{font-family:var(--serif);font-size:19px;line-height:1.62;color:#444;max-width:820px;margin:0}.case-card{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}.case-card-head{background:var(--pje);color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:800;padding:12px 16px}.case-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}.case-cell{padding:14px 16px;border-bottom:1px solid #eee}.case-cell:nth-child(odd){border-right:1px solid #eee}.case-cell b{display:block;color:var(--afya);font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:5px}.case-cell span{font-family:var(--serif);font-size:14px;color:#222;line-height:1.45}.notice{max-width:1220px;margin:19px auto 0;padding:0 24px}.notice-box{background:#fff;border:1px solid var(--line);border-left:5px solid var(--afya);box-shadow:0 2px 14px rgba(0,0,0,.03);padding:17px 20px;display:grid;grid-template-columns:auto 1fr;gap:16px}.notice-symbol{font-family:var(--serif);font-size:38px;line-height:1;color:var(--afya)}.notice-title{font-weight:900;margin-bottom:4px}.notice-text{font-size:14px;color:#555;line-height:1.6}.marker-demo{background:var(--afya-3);border-bottom:2px solid var(--afya);padding:1px 4px;border-radius:2px}.watermark-alert{display:inline-block;background:#fff;border:1px solid #f0b8d7;color:var(--afya-2);border-radius:999px;padding:3px 10px;font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin-right:6px}
+.tabs-wrap{position:sticky;top:55px;z-index:90;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.tabs{max-width:1220px;margin:0 auto;padding:0 24px;display:flex;gap:6px;overflow-x:auto}.tab{border:0;background:transparent;color:#666;font-size:14px;font-weight:700;padding:16px 10px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;display:flex;align-items:center;gap:8px}.tab .num{width:22px;height:22px;border-radius:50%;background:#f4f4f4;border:1px solid #ddd;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#777}.tab.active{color:var(--afya);border-bottom-color:var(--afya)}.tab.active .num{background:var(--afya);border-color:var(--afya);color:#fff}.filters{position:sticky;top:109px;z-index:80;background:#fafafa;border-bottom:1px solid var(--line)}.filters-inner{max-width:1220px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.filter-label{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:#777;font-weight:900;margin-right:6px}.chip{border:1px solid #cfcfcf;background:#fff;color:#555;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:700;cursor:pointer}.chip:hover{border-color:var(--afya);color:var(--afya)}.chip.active{background:var(--afya);border-color:var(--afya);color:#fff}.chip.active:hover{color:#fff}
+.section{display:none;max-width:1220px;margin:0 auto;padding:34px 24px 78px}.section.active{display:block}.layout{display:grid;grid-template-columns:255px 1fr;gap:34px;align-items:start}.aside{position:sticky;top:170px}.aside-tag{font-size:11px;color:var(--afya);font-weight:900;text-transform:uppercase;letter-spacing:.16em;margin-bottom:10px}.aside h2{font-family:var(--serif);font-size:29px;font-weight:400;line-height:1.08;margin:0 0 13px;letter-spacing:-.02em}.aside p{font-size:13px;color:#555;line-height:1.58;margin:0 0 18px}.aside .meta{border-top:1px solid var(--line);padding-top:14px;font-size:12px;color:#666;line-height:1.72}.aside .meta b{display:block;color:#222;font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;margin-top:10px}.paper{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);position:relative}.paper::before{content:'SIMULAÇÃO ACADÊMICA';position:absolute;right:18px;top:16px;color:rgba(201,0,122,.12);font-size:12px;font-weight:900;letter-spacing:.18em;z-index:0}.paper > *{position:relative;z-index:1}
+/* PJE CAPA */.pje-cover{font-family:var(--sans);padding:0}.pje-top{padding:24px 34px 14px;text-align:center}.pje-title{font-size:24px;font-weight:900;color:#333}.pje-sub{font-size:19px;color:#333;margin-top:3px}.pje-date{font-size:12px;color:#777;margin-bottom:9px}.pje-meta{border-top:1px solid #aaa;border-bottom:1px solid #aaa;margin:10px 0 0;padding:12px 0;text-align:left;font-size:14px;display:grid;grid-template-columns:1fr 1fr;gap:7px 28px}.pje-meta b{font-weight:900}.partes,.docs{padding:15px 34px;border-bottom:1px solid #aaa}.docs{border-bottom:0;padding-bottom:26px}.partes h3,.docs h3{font-size:16px;margin:0 0 8px;font-family:var(--sans)}.part-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px}.doc-table{width:100%;border-collapse:collapse;font-size:12.5px}.doc-table th{background:#eee;border:1px solid #aaa;padding:6px;text-align:left}.doc-table td{border:1px solid #ccc;padding:6px;vertical-align:top}.id{font-family:var(--mono);color:#111}.didactic-strip{background:var(--afya-4);border-top:1px solid var(--afya-3);padding:13px 34px;color:#4d0030;font-size:13px;line-height:1.55}
+/* DOCUMENTOS */.doc{font-family:var(--serif);font-size:15px;line-height:1.74;color:#111}.doc-stamp{font-family:var(--sans);font-size:11px;color:#555;background:#f3f3f3;border-bottom:1px solid #ccc;padding:8px 14px;line-height:1.36}.doc-body{padding:49px 64px 60px}.doc-body p{margin:0 0 14px;text-align:justify;text-indent:2.8em}.doc-body .no-indent{text-indent:0}.doc-body .center{text-align:center;text-indent:0}.doc-body .right{text-align:right;text-indent:0}.doc-body h3{font-family:var(--serif);font-size:16px;text-align:center;text-transform:uppercase;letter-spacing:.07em;margin:31px 0 16px}.doc-body h4{font-family:var(--serif);font-size:15px;text-transform:uppercase;margin:23px 0 10px}.doc-body ol,.doc-body ul{margin:8px 0 16px 34px}.doc-body li{margin-bottom:8px}.box-formal{border:1px solid #bbb;background:#fafafa;padding:12px 15px;margin:14px 0;font-family:var(--sans);font-size:13px;line-height:1.55}.signature{margin-top:42px;text-align:center;text-indent:0}.signature::before{content:'';display:block;width:280px;border-top:1px solid #333;margin:0 auto 7px}.mini-table{font-family:var(--sans);width:100%;border-collapse:collapse;font-size:12.5px;margin:13px 0 18px}.mini-table th,.mini-table td{border:1px solid #ccc;padding:7px;text-align:left}.mini-table th{background:#eee}.timeline{display:grid;gap:9px;margin:13px 0}.time-item{border:1px solid #ddd;border-left:4px solid var(--afya);padding:10px 12px;font-family:var(--sans);font-size:13px;background:#fff}.time-item b{color:var(--afya)}
+/* ANOTAÇÕES */.anot{background:var(--afya-3);border-bottom:2px solid var(--afya);padding:1px 3px;border-radius:2px;cursor:pointer;position:relative;transition:.15s}.anot:hover{background:#f7bfdd}.anot.open{background:var(--afya);color:#fff}.anot::after{content:attr(data-num);font-family:var(--sans);font-size:.68em;font-weight:900;color:var(--afya);position:relative;top:-.45em;margin-left:2px}.anot.open::after{color:#fff}.card{display:none;background:var(--afya-4);border-left:4px solid var(--afya);margin:12px 0 18px;padding:15px 18px;text-indent:0;font-family:var(--sans);font-size:13.5px;line-height:1.57;color:#333}.card.open{display:block;animation:slide .18s ease}.card.always{display:block;background:#fcfcfc;border-left-color:#d6d6d6}@keyframes slide{from{opacity:.2;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}.card .tag{display:inline-block;background:var(--afya);color:#fff;padding:3px 8px;border-radius:3px;font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:900;margin-bottom:8px}.card .title{font-family:var(--serif);font-size:18px;color:#111;margin-bottom:6px}.card .cpc{display:inline-block;background:#fff;border:1px solid #f0b8d6;color:var(--afya-2);border-radius:3px;padding:4px 9px;margin-top:8px;font-weight:800;font-size:12px}.paper.filtered .anot{background:transparent;border-bottom:0;color:#888;cursor:default}.paper.filtered .anot::after{display:none}.paper.filtered .anot.match{background:var(--afya-3);border-bottom:2px solid var(--afya);color:inherit;cursor:pointer}.paper.filtered .anot.match::after{display:inline;color:var(--afya)}.clean .anot{background:transparent!important;border-bottom:0!important;color:inherit!important;cursor:default}.clean .anot::after{display:none!important}.clean .card{display:none!important}.clean .filters,.clean .notice{display:none}.clean .paper::before{display:none}.clean .btn-guide-label{display:none}.review-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}.review-cell{border:1px solid #ddd;background:#fff;padding:13px 14px;font-family:var(--sans);font-size:13px;line-height:1.52}.review-cell b{color:var(--afya);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.06em;font-size:11px}.q{border-left:4px solid var(--afya);background:#fff;padding:10px 12px;margin:9px 0;font-family:var(--sans);font-size:13px}.footer{text-align:center;background:#fff;border-top:1px solid var(--line);padding:36px 24px 44px;color:#777;font-size:12px;letter-spacing:.05em}
+@media (max-width:940px){.topbar-inner{padding:10px 16px}.brand small{display:none}.hero-inner{grid-template-columns:1fr;padding:38px 16px 30px}.hero h1{font-size:42px}.lede{font-size:16px}.case-grid{grid-template-columns:1fr}.case-cell:nth-child(odd){border-right:0}.notice{padding:0 16px}.tabs{padding:0 16px}.filters-inner{padding:10px 16px}.section{padding:28px 16px 60px}.layout{grid-template-columns:1fr}.aside{position:static}.doc-body{padding:34px 26px}.pje-meta{grid-template-columns:1fr}.part-row{grid-template-columns:1fr}.review-grid{grid-template-columns:1fr}.filters{top:107px}.tabs-wrap{top:53px}}
+@media print{body{background:#fff}.topbar,.tabs-wrap,.filters,.notice,.aside,.footer{display:none!important}.hero{display:none}.section{display:block!important;max-width:none;padding:0;margin:0}.layout{display:block}.paper{box-shadow:none;border:0;page-break-after:always}.paper::before{display:none}.doc-body{padding:35mm 26mm}.card{display:block!important;background:#fff;border-left:3px solid #999;color:#333;page-break-inside:avoid}.anot{background:#eee!important;border-bottom:1px solid #888!important;color:#000!important}.anot::after{color:#333!important}.pje-cover{page-break-after:always}.doc-stamp{border-top:1px solid #ccc}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="brand-dot"></span>Processo Civil em Movimento <small>simulação PJe/TJPI · Afya Uninovafapi</small></div>
+    <div class="actions">
+      <button class="btn" id="modeClean">Modo limpo</button>
+      <button class="btn" id="reveal">Revelar anotações</button>
+      <button class="btn" id="reset">Limpar filtro</button>
+      <button class="btn primary" onclick="window.print()">Imprimir / salvar PDF</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">Estudo integrativo · Processo Civil I · Aulas 1 a 24</div>
+      <h1>Lara Monteiro <em>v.</em> TechMais<br>o processo visto por dentro.</h1>
+      <p class="lede">Um processo fictício em estética PJe/TJPI, com leitura guiada em magenta. A ideia não é decorar peças: é acompanhar o caminho entre o conflito, a tutela, a citação e a defesa, percebendo onde cada matéria aparece trabalhando.</p>
+    </div>
+    <div class="case-card">
+      <div class="case-card-head">Dados essenciais do caso</div>
+      <div class="case-grid">
+        <div class="case-cell"><b>Autora</b><span>Lara Monteiro, estudante de Direito, residente em Teresina/PI.</span></div>
+        <div class="case-cell"><b>Ré</b><span>TechMais Equipamentos Ltda., fornecedora de equipamentos eletrônicos.</span></div>
+        <div class="case-cell"><b>Conflito</b><span>Notebook novo apresenta defeito grave poucos dias antes de avaliações acadêmicas.</span></div>
+        <div class="case-cell"><b>Urgência</b><span>Pedido de equipamento substituto em 24 horas, antes da instrução completa do processo.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="notice">
+  <div class="notice-box">
+    <div class="notice-symbol">§</div>
+    <div>
+      <div class="notice-title"><span class="watermark-alert">simulação acadêmica</span>Como usar</div>
+      <div class="notice-text">Trechos como <span class="marker-demo">este aqui</span> trazem uma anotação. Clique para abrir. Os filtros ajudam a enxergar onde aparecem tutela, competência, petição inicial, citação e contestação. O modo limpo remove as anotações para a leitura como se fosse o processo seco.</div>
+    </div>
+  </div>
+</section>
+
+<div class="tabs-wrap">
+  <nav class="tabs" aria-label="Documentos do processo">
+    <button class="tab active" data-target="capa"><span class="num">0</span>Capa dos autos</button>
+    <button class="tab" data-target="antecedente"><span class="num">1</span>Inicial antecedente</button>
+    <button class="tab" data-target="decisao"><span class="num">2</span>Decisão de tutela</button>
+    <button class="tab" data-target="aditamento"><span class="num">3</span>Aditamento</button>
+    <button class="tab" data-target="citacao"><span class="num">4</span>Citação e audiência</button>
+    <button class="tab" data-target="contestacao"><span class="num">5</span>Contestação</button>
+    <button class="tab" data-target="mapa"><span class="num">6</span>Mapa final</button>
+  </nav>
+</div>
+
+<div class="filters">
+  <div class="filters-inner">
+    <span class="filter-label">Filtrar por tema</span>
+    <button class="chip active" data-filter="all">Todos</button>
+    <button class="chip" data-filter="pi">Petição inicial</button>
+    <button class="chip" data-filter="tutela">Tutela provisória</button>
+    <button class="chip" data-filter="competencia">Competência</button>
+    <button class="chip" data-filter="partes">Partes</button>
+    <button class="chip" data-filter="atos">Atos e prazos</button>
+    <button class="chip" data-filter="contestacao">Contestação</button>
+    <button class="chip" data-filter="principios">Normas fundamentais</button>
+  </div>
+</div>
+
+<section class="section active" id="capa">
+  <div class="layout">
+    <aside class="aside">
+      <div class="aside-tag">Autos simulados</div>
+      <h2>Capa em estética PJe</h2>
+      <p>A porta de entrada do processo: número, classe, órgão julgador, partes, advogados e documentos.</p>
+      <div class="meta"><b>Referência visual</b>Capa de consulta processual PJe/TJPI<br><b>Leitura</b>antes de qualquer peça, o processo já conta uma história.</div>
+    </aside>
+    <article class="paper pje-cover">
+      <div class="pje-top">
+        <div class="pje-date">02/05/2026</div>
+        <div class="pje-title">Tribunal de Justiça do Piauí</div>
+        <div class="pje-sub">PJe - Processo Judicial Eletrônico</div>
+        <div class="pje-meta">
+          <div><b>Número:</b> 0805127-44.2026.8.18.0140</div>
+          <div><b>Classe:</b> Tutela Antecipada Antecedente</div>
+          <div><b>Órgão julgador:</b> 3ª Vara Cível da Comarca de Teresina</div>
+          <div><b>Última distribuição:</b> 20/03/2026</div>
+          <div><b>Valor da causa:</b> R$ 10.800,00</div>
+          <div><b>Assuntos:</b> Vício do Produto; Obrigação de Fazer; Indenização</div>
+          <div><b>Nível de Sigilo:</b> 0 (Público)</div>
+          <div><b>Justiça gratuita?</b> SIM</div>
+          <div><b>Pedido de liminar ou antecipação de tutela?</b> SIM</div>
+          <div><b>Situação didática:</b> fase postulatória em construção</div>
+        </div>
+      </div>
+      <div class="partes">
+        <h3>Partes · Advogados</h3>
+        <div class="part-row">
+          <div><b>LARA MONTEIRO</b> (AUTORA)<br>Advogada: Mariana Reis Furtado · OAB/PI nº 17.204</div>
+          <div><b>TECHMAIS EQUIPAMENTOS LTDA.</b> (RÉ)<br>Advogado: Felipe Duarte Andrade · OAB/PI nº 18.991</div>
+        </div>
+      </div>
+      <div class="docs">
+        <h3>Documentos</h3>
+        <table class="doc-table">
+          <thead><tr><th>Id.</th><th>Data da assinatura</th><th>Documento</th><th>Tipo</th></tr></thead>
+          <tbody>
+            <tr><td class="id">99012011</td><td>20/03/2026<br>22:41</td><td>Petição Inicial de Tutela Antecipada Antecedente</td><td>Petição Inicial</td></tr>
+            <tr><td class="id">99012012</td><td>20/03/2026<br>22:41</td><td>Procuração</td><td>Procuração</td></tr>
+            <tr><td class="id">99012013</td><td>20/03/2026<br>22:41</td><td>Nota Fiscal · Notebook AlphaBook Pro 14</td><td>Documento comprobatório</td></tr>
+            <tr><td class="id">99012014</td><td>20/03/2026<br>22:41</td><td>Conversas de WhatsApp e e-mails de atendimento</td><td>Documento comprobatório</td></tr>
+            <tr><td class="id">99014001</td><td>21/03/2026<br>09:32</td><td>Decisão Interlocutória · Tutela Provisória</td><td>Decisão</td></tr>
+            <tr><td class="id">99022108</td><td>29/03/2026<br>18:09</td><td>Aditamento à Petição Inicial</td><td>Petição</td></tr>
+            <tr><td class="id">99030155</td><td>02/04/2026<br>11:16</td><td>Mandado de Citação e Intimação</td><td>Mandado</td></tr>
+            <tr><td class="id">99046831</td><td>22/04/2026<br>17:26</td><td>Contestação</td><td>Contestação</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="didactic-strip"><strong>Leitura processual:</strong> a capa já revela classe, valor, liminar, partes e documentos. O processo não começa na tese jurídica; começa na organização dos autos.</div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="antecedente">
+  <div class="layout">
+    <aside class="aside">
+      <div class="aside-tag">Peça nº 1</div>
+      <h2>Inicial antecedente</h2>
+      <p>A urgência vem primeiro. A petição nasce enxuta, mas precisa indicar o pedido final e o valor adequado da causa.</p>
+      <div class="meta"><b>Aulas</b>21 e 22 · Tutela provisória<br>23 · Petição inicial<br>7 · Competência<br>9 e 10 · Partes e procuradores</div>
+    </aside>
+    <article class="paper doc">
+      <div class="doc-stamp">Num. 99012011 - Pág. 1 · Assinado eletronicamente por: MARIANA REIS FURTADO - 20/03/2026 22:41:18<br>Este documento foi gerado para simulação acadêmica. Sem validade processual.</div>
+      <div class="doc-body">
+        <p class="no-indent"><span class="anot" data-card="a1" data-num="1" data-tags="competencia pi">EXCELENTÍSSIMO(A) SENHOR(A) JUIZ(A) DE DIREITO DE UMA DAS VARAS CÍVEIS DA COMARCA DE TERESINA/PI</span></p>
+        <div class="card" id="a1"><span class="tag">Competência</span><div class="title">O endereçamento é raciocínio, não enfeite</div>A ação foi direcionada à Vara Cível de Teresina porque a autora reside em Teresina, a compra ocorreu na cidade e o conflito tem ligação direta com esse foro. Se houvesse cláusula de foro distante, ela poderia ser discutida à luz do acesso à justiça e da vulnerabilidade do consumidor.<br><span class="cpc">CPC, art. 319, I · CDC, art. 101, I</span></div>
+
+        <p><span class="anot" data-card="a2" data-num="2" data-tags="partes pi">LARA MONTEIRO</span>, brasileira, estudante universitária, inscrita no CPF sob nº 000.000.000-00, residente e domiciliada em Teresina/PI, por sua advogada que subscreve, conforme procuração anexa, vem, respeitosamente, propor a presente</p>
+        <div class="card" id="a2"><span class="tag">Partes</span><div class="title">A autora aparece como sujeito processual</div>Este trecho resolve identificação e legitimidade. Lara é quem comprou o produto e sofreu diretamente o risco. Por isso, ocupa o polo ativo. A petição não começa pela tese; começa por quem está pedindo e por que essa pessoa tem relação com o conflito.<br><span class="cpc">CPC, art. 319, II</span></div>
+
+        <p class="center"><strong><span class="anot" data-card="a3" data-num="3" data-tags="tutela pi">PETIÇÃO INICIAL DE TUTELA ANTECIPADA REQUERIDA EM CARÁTER ANTECEDENTE</span></strong></p>
+        <div class="card" id="a3"><span class="tag">Tutela antecedente</span><div class="title">Aqui está o ponto que o aluno precisa enxergar</div>Esta não é uma petição inicial completa comum. A urgência é tão relevante que o autor pede primeiro a medida antecipatória e se compromete a aditar depois. A diferença para a tutela incidental é simples: na incidental, a ação já vem completa; na antecedente, o foco inicial é salvar o bem da vida.<br><span class="cpc">CPC, art. 303</span></div>
+
+        <p>em face de <span class="anot" data-card="a4" data-num="4" data-tags="partes pi">TECHMAIS EQUIPAMENTOS LTDA.</span>, pessoa jurídica de direito privado, inscrita no CNPJ sob nº 00.000.000/0001-00, com endereço comercial na Avenida Frei Serafim, nº 1000, Centro, Teresina/PI, pelos fatos urgentes e fundamentos a seguir expostos.</p>
+        <div class="card" id="a4"><span class="tag">Polo passivo</span><div class="title">O réu não é escolhido por intuição</div>A TechMais está no polo passivo porque vendeu o produto e resistiu à solução administrativa. É a legitimidade passiva: a pessoa contra quem o pedido faz sentido dentro da narrativa apresentada.</div>
+
+        <h3>I - Dos fatos urgentes</h3>
+        <p><span class="anot" data-card="a5" data-num="5" data-tags="pi tutela">No dia 10 de março de 2026, a autora adquiriu junto à ré um notebook AlphaBook Pro 14, pelo valor de R$ 5.800,00, conforme nota fiscal anexa.</span></p>
+        <div class="card" id="a5"><span class="tag">Fatos</span><div class="title">Isso são os fatos da inicial</div>A peça começa com uma cena objetiva: data, partes, produto, valor e prova. Fato bom é fato com utilidade processual. Ele prepara a causa de pedir e permitirá ao juiz compreender a urgência sem depender de adivinhação.</div>
+        <p>O equipamento foi adquirido para uso acadêmico, especialmente para acesso à plataforma digital da universidade, elaboração de trabalhos e realização de atividades avaliativas.</p>
+        <p>Após oito dias de uso, o notebook passou a desligar repentinamente, apresentar falha de carregamento e ocasionar perda de arquivos em edição.</p>
+        <p><span class="anot" data-card="a6" data-num="6" data-tags="tutela pi">A próxima atividade avaliativa da autora está marcada para 24 de março de 2026, sendo indispensável o uso do equipamento para finalização de relatório e envio pela plataforma acadêmica.</span></p>
+        <div class="card" id="a6"><span class="tag">Perigo de dano</span><div class="title">A urgência precisa ter relógio</div>Não basta dizer “é urgente”. A boa peça mostra por que o tempo do processo ameaça o resultado útil. Aqui, a data da avaliação cria um prazo concreto: se o juiz esperar a sentença, o prejuízo acadêmico já terá acontecido.</div>
+        <p>A autora procurou a loja por WhatsApp, e-mail e atendimento presencial, informando a urgência. A ré limitou-se a orientar o envio do produto à assistência técnica, com prazo estimado de até trinta dias, recusando troca imediata ou fornecimento provisório de equipamento equivalente.</p>
+
+        <h3>II - Da probabilidade do direito e do perigo de dano</h3>
+        <p><span class="anot" data-card="a7" data-num="7" data-tags="tutela principios">A probabilidade do direito decorre da nota fiscal, das mensagens de atendimento e dos registros das falhas apresentadas poucos dias após a compra.</span></p>
+        <div class="card" id="a7"><span class="tag">Probabilidade do direito</span><div class="title">Não é certeza; é boa base inicial</div>Na tutela provisória, o juiz trabalha com cognição sumária. A autora não precisa provar tudo como na sentença, mas precisa apresentar um conjunto inicial coerente: compra, defeito, tentativa de solução e resistência.</div>
+        <p>O perigo de dano está presente porque a demora de trinta dias para análise técnica pode tornar inútil a tutela final, já que a autora depende do notebook para cumprir atividade avaliativa em data próxima.</p>
+        <p>A medida requerida é reversível e proporcional: o fornecimento de equipamento substituto apenas preserva a utilidade do processo até que a controvérsia seja melhor esclarecida.</p>
+
+        <h3>III - Dos pedidos urgentes e da indicação do pedido final</h3>
+        <div class="box-formal"><ol>
+          <li>a concessão de tutela antecipada antecedente para determinar que a ré forneça notebook substituto equivalente, no prazo de 24 horas, sob pena de multa diária;</li>
+          <li>a intimação da ré para cumprimento imediato da tutela, caso deferida;</li>
+          <li>a posterior citação da ré, na forma da lei, para integrar a relação processual e exercer o contraditório;</li>
+          <li>a autorização para aditamento da petição inicial, com complementação dos fatos, fundamentos e pedidos definitivos;</li>
+          <li>a indicação de que o pedido final compreenderá substituição definitiva do produto ou restituição do valor pago, além de indenização por danos materiais e morais, se comprovados.</li>
+        </ol></div>
+        <p><span class="anot" data-card="a8" data-num="8" data-tags="pi tutela">Dá-se à causa o valor de R$ 10.800,00, levando em consideração o benefício econômico estimado do pedido final.</span></p>
+        <div class="card" id="a8"><span class="tag">Valor da causa</span><div class="title">Na antecedente, o valor já olha para o pedido final</div>Um cuidado técnico: na tutela antecipada antecedente, a inicial é resumida, mas o valor da causa deve considerar o pedido de tutela final indicado. Por isso não se usa apenas o valor da urgência imediata. Aqui, o valor combina produto, danos materiais estimados e indenização moral pretendida.<br><span class="cpc">CPC, art. 303, §4º · art. 292</span></div>
+        <p class="no-indent">Termos em que, pede deferimento.</p>
+        <p class="right no-indent">Teresina/PI, 20 de março de 2026.</p>
+        <p class="signature no-indent">Mariana Reis Furtado<br>OAB/PI nº 17.204</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="decisao">
+  <div class="layout">
+    <aside class="aside"><div class="aside-tag">Peça nº 2</div><h2>Decisão interlocutória</h2><p>O juiz enfrenta a urgência antes da citação, fundamenta e determina a intimação/citação.</p><div class="meta"><b>Aulas</b>21 · Urgência<br>4 · Contraditório e fundamentação<br>17 · Comunicação dos atos</div></aside>
+    <article class="paper doc"><div class="doc-stamp">Num. 99014001 - Pág. 1 · Assinado eletronicamente por: Juízo da 3ª Vara Cível de Teresina - 21/03/2026 09:32:04</div><div class="doc-body">
+      <p class="center no-indent"><strong>ESTADO DO PIAUÍ<br>PODER JUDICIÁRIO<br>3ª VARA CÍVEL DA COMARCA DE TERESINA</strong></p>
+      <p class="no-indent"><strong>Processo nº:</strong> 0805127-44.2026.8.18.0140<br><strong>Classe:</strong> Tutela Antecipada Antecedente<br><strong>Autora:</strong> Lara Monteiro<br><strong>Ré:</strong> TechMais Equipamentos Ltda.</p>
+      <p class="center no-indent"><strong>DECISÃO INTERLOCUTÓRIA</strong></p>
+      <p>Trata-se de pedido de tutela antecipada requerida em caráter antecedente por Lara Monteiro em face de TechMais Equipamentos Ltda., objetivando o fornecimento emergencial de equipamento substituto equivalente a notebook adquirido recentemente e alegadamente defeituoso.</p>
+      <p><span class="anot" data-card="d1" data-num="9" data-tags="tutela principios">O pedido comporta análise liminar, pois a espera pela prévia oitiva da parte contrária pode comprometer a utilidade da medida postulada.</span></p>
+      <div class="card" id="d1"><span class="tag">Contraditório diferido</span><div class="title">Decidir antes de ouvir não é eliminar defesa</div>Em tutela de urgência, o juiz pode decidir antes da manifestação do réu quando esperar pela oitiva ameaça o direito. O contraditório será exercido depois, por contestação, recurso ou pedido de revisão. Não é “sem contraditório”; é contraditório postergado.<br><span class="cpc">CPC, art. 9º, parágrafo único, I</span></div>
+      <p>A probabilidade do direito se evidencia, em juízo inicial, pela nota fiscal, pelos registros de atendimento e pelas mensagens que demonstram a comunicação do defeito em prazo curto após a aquisição.</p>
+      <p>O perigo de dano decorre da proximidade da atividade avaliativa indicada pela autora e da dependência do equipamento para envio de trabalho acadêmico em plataforma digital, de modo que a demora de trinta dias para análise técnica pode tornar ineficaz a tutela final.</p>
+      <p><span class="anot" data-card="d2" data-num="10" data-tags="tutela principios">Em juízo de cognição sumária, defiro parcialmente a tutela antecipada antecedente</span> para determinar que a ré forneça à autora, no prazo de 48 horas, equipamento substituto equivalente, até ulterior deliberação ou solução técnica definitiva, sob pena de multa diária de R$ 300,00, limitada inicialmente a R$ 6.000,00.</p>
+      <div class="card" id="d2"><span class="tag">Cognição sumária</span><div class="title">O juiz não julgou o mérito final</div>A decisão entrega uma proteção provisória. Ela não declara, definitivamente, que a autora tem razão. Apenas reconhece que há base suficiente para evitar dano imediato. Por isso a tutela pode ser modificada ou revogada.<br><span class="cpc">CPC, art. 296 e art. 300</span></div>
+      <p>Determino a intimação da ré para cumprimento imediato da medida e, na sequência, sua citação para integrar a relação processual, observado o prazo legal após o aditamento da petição inicial.</p>
+      <p>Intime-se a autora para aditar a petição inicial, complementando sua argumentação, juntando novos documentos e confirmando os pedidos finais, no prazo legal.</p>
+      <p class="right no-indent">Teresina/PI, 21 de março de 2026.</p><p class="signature no-indent">Juiz(a) de Direito</p>
+    </div></article>
+  </div>
+</section>
+
+<section class="section" id="aditamento">
+  <div class="layout">
+    <aside class="aside"><div class="aside-tag">Peça nº 3</div><h2>Aditamento da inicial</h2><p>A peça urgente vira petição inicial completa. Aqui entram fatos mais desenvolvidos, pedidos definitivos e audiência.</p><div class="meta"><b>Aulas</b>22 · Aditamento<br>23 · Estrutura da inicial<br>24 · Audiência de conciliação</div></aside>
+    <article class="paper doc"><div class="doc-stamp">Num. 99022108 - Pág. 1 · Assinado eletronicamente por: MARIANA REIS FURTADO - 29/03/2026 18:09:46</div><div class="doc-body">
+      <p class="no-indent">EXCELENTÍSSIMO(A) SENHOR(A) JUIZ(A) DE DIREITO DA 3ª VARA CÍVEL DA COMARCA DE TERESINA/PI</p>
+      <p class="no-indent"><strong>Processo nº:</strong> 0805127-44.2026.8.18.0140</p>
+      <p>LARA MONTEIRO, já qualificada, vem apresentar o presente <strong>ADITAMENTO À PETIÇÃO INICIAL</strong>, nos termos do art. 303 do Código de Processo Civil.</p>
+      <h3>I - Da complementação dos fatos</h3>
+      <p><span class="anot" data-card="ad1" data-num="11" data-tags="pi tutela">Após a concessão da tutela, a ré forneceu equipamento substituto, evitando prejuízo imediato à entrega da atividade avaliativa. Contudo, o notebook adquirido permaneceu sem solução definitiva.</span></p>
+      <div class="card" id="ad1"><span class="tag">Aditamento</span><div class="title">Agora a inicial fica completa</div>O aditamento é o momento em que o autor desenvolve a petição. A tutela antecedente resolveu a urgência, mas o mérito precisa ser enfrentado: substituição definitiva, restituição, danos e provas.<br><span class="cpc">CPC, art. 303, §1º, I</span></div>
+      <p>Em nova tentativa administrativa, a ré informou que o produto deveria permanecer em análise por prazo indeterminado, sem compromisso de troca ou restituição integral.</p>
+      <p>O laudo técnico particular juntado nesta oportunidade indica falha de placa lógica incompatível com mau uso, sugerindo vício interno do equipamento.</p>
+      <h3>II - Do direito material e da pretensão definitiva</h3>
+      <p>A autora adquiriu produto novo e essencial à sua rotina acadêmica. A falha grave em curto período, somada à ausência de solução administrativa efetiva, autoriza a intervenção jurisdicional para tutela específica e reparação dos prejuízos comprovados.</p>
+      <p><span class="anot" data-card="ad2" data-num="12" data-tags="pi">A causa de pedir completa é formada pelos fatos narrados, pela relação de consumo, pelo vício do produto e pela resistência da ré em oferecer solução adequada.</span></p>
+      <div class="card" id="ad2"><span class="tag">Causa de pedir</span><div class="title">Fato + fundamento jurídico</div>A causa de pedir não é só “o que aconteceu”. Ela junta a causa de pedir remota (fatos) e a causa de pedir próxima (fundamentos jurídicos). É o coração lógico da inicial.</div>
+      <h3>III - Da audiência de conciliação ou mediação</h3>
+      <p>A autora manifesta interesse na audiência, desde que a ré compareça com proposta concreta de solução definitiva, e não apenas com repetição da análise técnica já recusada administrativamente.</p>
+      <h3>IV - Dos pedidos definitivos</h3>
+      <div class="box-formal"><ol>
+        <li>o recebimento do presente aditamento;</li>
+        <li>a confirmação da tutela provisória concedida;</li>
+        <li>a condenação da ré à substituição definitiva do notebook por produto novo equivalente ou, subsidiariamente, à restituição integral do valor pago;</li>
+        <li>a condenação da ré ao ressarcimento de despesas materiais comprovadas;</li>
+        <li>a condenação da ré ao pagamento de indenização por danos morais, em valor a ser arbitrado pelo juízo;</li>
+        <li>a citação da ré para audiência de conciliação/mediação e, não havendo acordo, apresentação de contestação;</li>
+        <li>a produção de prova documental suplementar e, se necessário, perícia técnica no equipamento.</li>
+      </ol></div>
+      <p class="no-indent">Ratifica-se o valor da causa em R$ 10.800,00.</p>
+      <p class="right no-indent">Teresina/PI, 29 de março de 2026.</p><p class="signature no-indent">Mariana Reis Furtado<br>OAB/PI nº 17.204</p>
+    </div></article>
+  </div>
+</section>
+
+<section class="section" id="citacao">
+  <div class="layout"><aside class="aside"><div class="aside-tag">Peça nº 4</div><h2>Citação e audiência</h2><p>O réu é chamado ao processo e, antes da contestação, há tentativa institucional de composição.</p><div class="meta"><b>Aulas</b>17 · Citação e intimação<br>24 · Audiência<br>16 · Prazos</div></aside>
+  <article class="paper doc"><div class="doc-stamp">Num. 99030155 - Pág. 1 · Mandado expedido em 02/04/2026 11:16:10</div><div class="doc-body">
+    <p class="center no-indent"><strong>MANDADO DE CITAÇÃO E INTIMAÇÃO</strong></p>
+    <p class="no-indent"><strong>Processo:</strong> 0805127-44.2026.8.18.0140<br><strong>Autora:</strong> Lara Monteiro<br><strong>Ré:</strong> TechMais Equipamentos Ltda.</p>
+    <p><span class="anot" data-card="c1" data-num="13" data-tags="atos principios">Fica a ré citada para integrar a relação processual e comparecer à audiência de conciliação designada para 15 de abril de 2026, às 9h.</span></p>
+    <div class="card" id="c1"><span class="tag">Citação</span><div class="title">O processo se triangulariza</div>A citação chama o réu ao processo. Sem ela, não há contraditório pleno. O autor provocou o Judiciário; o juiz atuou; agora o réu passa a integrar formalmente a relação processual.<br><span class="cpc">CPC, art. 238</span></div>
+    <p>A ré fica igualmente intimada da decisão que deferiu tutela provisória, devendo manter o fornecimento do equipamento substituto até ulterior deliberação judicial.</p>
+    <div class="timeline">
+      <div class="time-item"><b>02/04/2026</b> · Expedição do mandado de citação/intimação.</div>
+      <div class="time-item"><b>05/04/2026</b> · Cumprimento positivo pelo oficial de justiça.</div>
+      <div class="time-item"><b>08/04/2026</b> · Juntada do mandado cumprido aos autos.</div>
+      <div class="time-item"><b>15/04/2026</b> · Audiência de conciliação.</div>
+    </div>
+    <h3>Termo de audiência</h3>
+    <p>Aberta a audiência, presentes a autora e sua advogada. Presente o representante da ré, acompanhado de advogado.</p>
+    <p><span class="anot" data-card="c2" data-num="14" data-tags="atos principios">A ré propôs apenas a manutenção do equipamento substituto até conclusão da assistência técnica, sem compromisso de troca, restituição ou indenização.</span></p>
+    <div class="card" id="c2"><span class="tag">Autocomposição</span><div class="title">Acordo útil não é qualquer acordo</div>A audiência existe para tentar resolver o conflito. Mas a proposta precisa enfrentar o problema real. Repetir a postura administrativa anterior pode cumprir a formalidade, mas não necessariamente resolve a lide.</div>
+    <p>A autora recusou a proposta, por entender que a solução não enfrentava o vício do produto adquirido nem os prejuízos já suportados.</p>
+    <p>Restou infrutífera a tentativa de conciliação. A ré saiu ciente do prazo para contestação.</p>
+  </div></article></div>
+</section>
+
+<section class="section" id="contestacao">
+  <div class="layout"><aside class="aside"><div class="aside-tag">Peça nº 5</div><h2>Contestação</h2><p>A resposta do réu revisita tudo: competência, valor da causa, fatos, tutela e mérito.</p><div class="meta"><b>Aulas</b>25 · Contestação<br>7 e 8 · Competência<br>18 · Valor da causa<br>21 · Revisão da tutela</div></aside>
+  <article class="paper doc"><div class="doc-stamp">Num. 99046831 - Pág. 1 · Assinado eletronicamente por: FELIPE DUARTE ANDRADE - 22/04/2026 17:26:31</div><div class="doc-body">
+    <p class="no-indent">EXCELENTÍSSIMO(A) SENHOR(A) JUIZ(A) DE DIREITO DA 3ª VARA CÍVEL DA COMARCA DE TERESINA/PI</p>
+    <p class="no-indent"><strong>Processo nº:</strong> 0805127-44.2026.8.18.0140</p>
+    <p>TECHMAIS EQUIPAMENTOS LTDA., já qualificada, vem apresentar sua</p>
+    <p class="center"><strong><span class="anot" data-card="co1" data-num="15" data-tags="contestacao principios">CONTESTAÇÃO</span></strong></p>
+    <div class="card" id="co1"><span class="tag">Resposta do réu</span><div class="title">O contraditório vira peça</div>A contestação é a principal defesa do réu. Ela pode conter preliminares, defesa de mérito, impugnação à tutela, pedido de prova e narrativa alternativa. Não é “negar por negar”.<br><span class="cpc">CPC, art. 335 e 336</span></div>
+    <h3>I - Síntese da demanda</h3>
+    <p>A autora ajuizou demanda alegando defeito em notebook e pleiteando tutela provisória, substituição do produto, indenização material e danos morais.</p>
+    <p>A ré demonstrará que adotou procedimento regular de assistência técnica, sem recusa ilícita de atendimento.</p>
+    <h3>II - Preliminarmente</h3>
+    <h4>II.1. Da incompetência territorial relativa</h4>
+    <p><span class="anot" data-card="co2" data-num="16" data-tags="contestacao competencia">O contrato de compra prevê cláusula de eleição de foro da Comarca de São Paulo/SP para conflitos decorrentes da aquisição.</span></p>
+    <div class="card" id="co2"><span class="tag">Preliminar de competência</span><div class="title">Se não alegar agora, pode precluir</div>A incompetência relativa deve ser arguida em preliminar de contestação. Se a ré silencia, a competência pode se prorrogar. Aqui, o debate didático é: cláusula de foro contra consumidor pode prevalecer se dificultar acesso à justiça?<br><span class="cpc">CPC, art. 337, II · art. 65</span></div>
+    <p>Sendo a competência territorial de natureza relativa, requer-se a remessa dos autos ao foro eleito.</p>
+    <h4>II.2. Da impugnação ao valor da causa</h4>
+    <p>A autora atribuiu à causa o valor de R$ 10.800,00 sem comprovar danos materiais adicionais ou base objetiva para indenização moral no patamar estimado.</p>
+    <p>Requer-se a adequação do valor da causa ao montante de R$ 5.800,00, correspondente ao valor do produto.</p>
+    <h3>III - Do mérito</h3>
+    <h4>III.1. Da regularidade da conduta da ré</h4>
+    <p><span class="anot" data-card="co3" data-num="17" data-tags="contestacao">A ré não recusou atendimento. Orientou o envio do produto à assistência técnica para apuração da origem do problema, como procedimento regular de garantia.</span></p>
+    <div class="card" id="co3"><span class="tag">Defesa de mérito</span><div class="title">A ré não discute só processo</div>Depois das preliminares, a contestação entra no mérito: tenta demonstrar que a conduta da empresa foi regular. O réu pode negar fato, negar consequência jurídica ou apresentar fato impeditivo, modificativo ou extintivo.</div>
+    <p>A substituição imediata sem análise técnica imporia obrigação desproporcional ao fornecedor, especialmente diante da possibilidade de mau uso, queda, instalação indevida de software ou dano provocado por terceiro.</p>
+    <h4>III.2. Da ausência de dano moral</h4>
+    <p>Eventual falha técnica, se comprovada, caracterizaria mero inadimplemento contratual, não havendo prova de abalo a direito da personalidade, reprovação acadêmica ou dano concreto extraordinário.</p>
+    <h4>III.3. Da revisão da tutela provisória</h4>
+    <p><span class="anot" data-card="co4" data-num="18" data-tags="contestacao tutela principios">A tutela provisória deve ser revogada ou, subsidiariamente, ajustada, especialmente quanto à multa diária.</span></p>
+    <div class="card" id="co4"><span class="tag">Contraditório sobre a tutela</span><div class="title">A ré tenta desmontar a urgência</div>A tutela antecedente foi concedida antes da defesa. Agora, a ré exerce contraditório e pede revisão. Isso fecha o ciclo: urgência primeiro, defesa depois, decisão sempre revisável.<br><span class="cpc">CPC, art. 296</span></div>
+    <h3>IV - Dos pedidos</h3>
+    <div class="box-formal"><ol>
+      <li>o acolhimento da preliminar de incompetência territorial relativa, com remessa dos autos ao foro eleito;</li>
+      <li>subsidiariamente, a adequação do valor da causa;</li>
+      <li>a revogação ou adequação da tutela provisória;</li>
+      <li>no mérito, a improcedência dos pedidos;</li>
+      <li>a produção de prova documental suplementar e perícia técnica no equipamento;</li>
+      <li>a condenação da autora ao pagamento de custas e honorários, se cabível.</li>
+    </ol></div>
+    <p class="right no-indent">Teresina/PI, 22 de abril de 2026.</p><p class="signature no-indent">Felipe Duarte Andrade<br>OAB/PI nº 18.991</p>
+  </div></article></div>
+</section>
+
+<section class="section" id="mapa"><div class="layout"><aside class="aside"><div class="aside-tag">Fechamento</div><h2>Mapa final</h2><p>Para revisar antes da prova: cada instituto no lugar em que apareceu.</p><div class="meta"><b>Uso</b>revisão final · estudo dirigido · discussão em sala</div></aside><article class="paper doc"><div class="doc-body">
+<h3>O processo como caminho</h3>
+<div class="review-grid">
+  <div class="review-cell"><b>Conflito material</b><p>Notebook defeituoso, tentativa administrativa frustrada e risco acadêmico imediato.</p></div>
+  <div class="review-cell"><b>Direito de ação</b><p>Lara transforma a pretensão resistida em demanda judicial.</p></div>
+  <div class="review-cell"><b>Competência</b><p>A ação é proposta em Teresina; a ré tenta deslocar para São Paulo por foro de eleição.</p></div>
+  <div class="review-cell"><b>Partes</b><p>Lara no polo ativo; TechMais no polo passivo; advogados com capacidade postulatória.</p></div>
+  <div class="review-cell"><b>Tutela antecedente</b><p>O pedido urgente vem primeiro; depois há aditamento para completar a demanda.</p></div>
+  <div class="review-cell"><b>Fundamentação</b><p>A decisão explica probabilidade, perigo e reversibilidade. Não decide por frase vazia.</p></div>
+  <div class="review-cell"><b>Citação</b><p>Chama a ré ao processo e viabiliza o contraditório formal e substancial.</p></div>
+  <div class="review-cell"><b>Audiência</b><p>Tenta composição, mas a proposta precisa ser útil ao conflito concreto.</p></div>
+  <div class="review-cell"><b>Contestação</b><p>Traz preliminares, mérito, impugnação da tutela e pedidos defensivos.</p></div>
+  <div class="review-cell"><b>Normas fundamentais</b><p>Duração razoável, cooperação, boa-fé, contraditório e motivação atravessam todo o fluxo.</p></div>
+</div>
+<h3>Perguntas de fixação</h3>
+<div class="q"><b>1.</b> Por que a tutela foi apresentada como antecedente, e não incidental?</div>
+<div class="q"><b>2.</b> Qual trecho da inicial demonstra o perigo de dano?</div>
+<div class="q"><b>3.</b> A decisão liminar antes da citação viola o contraditório? Explique.</div>
+<div class="q"><b>4.</b> Qual preliminar de contestação a ré apresenta e qual risco haveria se ela silenciasse?</div>
+<div class="q"><b>5.</b> O que muda entre a petição inicial antecedente e o aditamento?</div>
+<h3>Gabarito orientativo</h3>
+<p><strong>1.</strong> Porque a urgência exigia medida inicial antes da apresentação completa da demanda. A autora pediu primeiro a providência urgente e depois aditou a inicial.</p>
+<p><strong>2.</strong> A proximidade da atividade avaliativa e a dependência do notebook para envio do trabalho demonstram perigo concreto e risco ao resultado útil.</p>
+<p><strong>3.</strong> Não. Em tutela de urgência, admite-se contraditório diferido: o juiz decide primeiro para evitar dano, mas a ré poderá se manifestar depois.</p>
+<p><strong>4.</strong> A ré apresenta preliminar de incompetência territorial relativa, com base em cláusula de foro. Se não alegasse, poderia ocorrer prorrogação da competência.</p>
+<p><strong>5.</strong> A inicial antecedente é mais enxuta e focada na urgência. O aditamento completa fatos, fundamentos e pedidos definitivos.</p>
+</div></article></div></section>
+
+<footer class="footer">Processo Civil em Movimento · Simulação acadêmica inspirada na estética PJe/TJPI · Afya Uninovafapi · Prof. Dhaniel Terto</footer>
+<script>
+const tabs=[...document.querySelectorAll('.tab')];
+const sections=[...document.querySelectorAll('.section')];
+tabs.forEach(tab=>tab.addEventListener('click',()=>{tabs.forEach(t=>t.classList.remove('active'));sections.forEach(s=>s.classList.remove('active'));tab.classList.add('active');document.getElementById(tab.dataset.target).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}));
+const anots=[...document.querySelectorAll('.anot')];
+anots.forEach(a=>a.addEventListener('click',()=>{if(document.body.classList.contains('clean')) return; if(document.querySelector('.paper.filtered')&&!a.classList.contains('match')) return; const card=document.getElementById(a.dataset.card); if(!card) return; a.classList.toggle('open'); card.classList.toggle('open');}));
+let revealed=false;document.getElementById('reveal').addEventListener('click',()=>{revealed=!revealed;document.querySelectorAll('.card').forEach(c=>c.classList.toggle('open',revealed));anots.forEach(a=>a.classList.toggle('open',revealed));document.getElementById('reveal').textContent=revealed?'Ocultar anotações':'Revelar anotações';});
+const chips=[...document.querySelectorAll('.chip')];
+function applyFilter(f){chips.forEach(c=>c.classList.toggle('active',c.dataset.filter===f));document.querySelectorAll('.paper').forEach(p=>p.classList.toggle('filtered',f!=='all'));anots.forEach(a=>{const tags=(a.dataset.tags||'').split(/\s+/);const match=f==='all'||tags.includes(f);a.classList.toggle('match',match);if(f!=='all'&&!match){a.classList.remove('open');const card=document.getElementById(a.dataset.card); if(card) card.classList.remove('open');}})}
+chips.forEach(c=>c.addEventListener('click',()=>applyFilter(c.dataset.filter)));
+document.getElementById('reset').addEventListener('click',()=>applyFilter('all'));
+let clean=false;document.getElementById('modeClean').addEventListener('click',()=>{clean=!clean;document.body.classList.toggle('clean',clean);document.getElementById('modeClean').textContent=clean?'Modo guiado':'Modo limpo';});
+</script>
+</body>
+</html>
